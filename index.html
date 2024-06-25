@@ -34,8 +34,10 @@
                 </div>
 
                 <div class="thumbs">
-                    <div class="prev"></div>
-                    <div class="next"></div>
+
+                    <!-- inserimento degli eventi per attivare lo slider al click -->
+                    <div class="prev" @click="prevImage()"></div>
+                    <div class="next" @click="nextImage()"></div>
 
                     <!-- uso di v-for e v-bind per inserire le anteprime -->
                     <div class="thumb" v-for="(thumb, index) in slides" :key="index" :class="{ active: index === activeImage }">

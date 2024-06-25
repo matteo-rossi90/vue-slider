@@ -42,6 +42,24 @@ createApp({
 
         }
         
+    },
+    //gestione delle funzioni relative dello slider al click dell'utente
+    methods:{
+
+        //cliccando sulla freccia in basso
+        nextImage(){
+            //incrementare il valore al click e passare all'immagine successiva
+            //per poi ritornare alla prima
+            this.activeImage = (this.activeImage + 1) % this.slides.length;
+            
+        },
+        //cliccando sulla freccia in alto
+        prevImage() {
+            //decrementare il valore al click e passare all'immagine precedente 
+            //per poi ritornare all'ultima partendo dalla prima
+            this.activeImage = (this.activeImage - 1 + this.slides.length) % this.slides.length; 
+        }
+
     }
 
 }).mount('#app');
