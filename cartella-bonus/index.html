@@ -22,7 +22,9 @@
             <div class="slider-wrapper" tabindex="0">
 
                 <!-- uso di v-for e v-bind per inserire le immagini, i testi e i titoli -->
-                <div class="item" v-for="(slidesImage, index) in slides" :key="index" :class="{ active: index === activeImage }">
+                <!-- con mouseover interrompi l'autoplay, con mouseleave riprende lo slideshow -->
+                <div class="item" v-for="(slidesImage, index) in slides" :key="index" :class="{ active: index === activeImage }" 
+                @mouseover="resetPlay()" @mouseleave="play()">
                     
                     <img :src="slidesImage.image" alt="slidesImage.title" />
                     <div class="text">

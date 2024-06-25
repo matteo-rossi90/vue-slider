@@ -46,7 +46,8 @@ createApp({
                     title: "Marvel's Avengers",
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
-            ]
+            ],
+            timer: null
 
         }
         
@@ -59,24 +60,27 @@ createApp({
             //incrementare il valore al click e passare all'immagine successiva
             //per poi ritornare alla prima
             this.activeImage = (this.activeImage + 1) % this.slides.length;
-            
         },
         //cliccando sulla freccia in alto
         prevImage() {
             //decrementare il valore al click e passare all'immagine precedente 
             //per poi ritornare all'ultima partendo dalla prima
-            this.activeImage = (this.activeImage - 1 + this.slides.length) % this.slides.length; 
+            this.activeImage = (this.activeImage - 1 + this.slides.length) % this.slides.length;
         },
         //fare in modo che al click di un'anteprima si visualizzi l'immagine in grande
         thumbClick(index){
             this.activeImage = index;
         },
         //slideshow automatico
-        play: function () {
-            let app = this;
-            this.timer = setInterval(function () {
-                app.nextImage();
-            }, 3000);
+        play () {
+            if (this.timer === null) {
+                this.timer = setInterval(this.nextImage, 3000);
+            }    
+        },
+        //interrompi slideshow
+        resetPlay() {
+            clearInterval(this.timer);
+            this.timer = null;
         }
 
     },
