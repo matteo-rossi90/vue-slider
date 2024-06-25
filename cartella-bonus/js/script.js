@@ -10,6 +10,8 @@
 //richiamare Vue
 const { createApp } = Vue;
 
+let slideshowInterval = 0;
+
 createApp({
     
     //gestione dei dati in Vue
@@ -68,9 +70,18 @@ createApp({
         //fare in modo che al click di un'anteprima si visualizzi l'immagine in grande
         thumbClick(index){
             this.activeImage = index;
+        },
+        //slideshow automatico
+        play: function () {
+            let app = this;
+            this.timer = setInterval(function () {
+                app.nextImage();
+            }, 3000);
         }
-        
 
+    },
+    created: function () {
+        this.play();
     }
 
 }).mount('#app');
